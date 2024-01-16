@@ -1,8 +1,8 @@
 #' PRIVATE class : An S4 class to represent a Hypergeometric tests in Mulea.
 #'
-#' @slot gmt A data.frame representing GMT's reprezentation of model.
-#' @slot element_names A data from expeciment to analize accross model.
-#' @slot background_element_names A background data to count test.
+#' @slot gmt A data.frame representing the GMT model.
+#' @slot element_names Data to be analysed across the model.
+#' @slot background_element_names Background data used for the test.
 #' @return MuleaHypergeometricTest object. Used as private function.
 #' @examples
 #' \dontrun{
