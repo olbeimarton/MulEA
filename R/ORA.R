@@ -96,9 +96,9 @@ setMethod("initialize", "ora",
                   run_test(muleaSetBaseEnrichmentTest)
                 
                 muleaSetBaseEnrichmentTest <- merge(
-                  setBasemodel@gmt[c('ontologyId', 'ontologyName')],
+                  setBasemodel@gmt[c('ontology_id', 'ontology_name')],
                   muleaSetBaseEnrichmentTest,
-                  by.x = "ontologyId",
+                  by.x = "ontology_id",
                   by.y = "DB_names",
                   all = TRUE
                 )
@@ -140,10 +140,10 @@ setMethod("initialize", "ora",
                 setBasedTestRes <- run_test(muleaHypergeometricTest)
                 
                 muleaSetBaseEnrichmentTest <- merge(
-                  setBasemodel@gmt[c('ontologyId', 'ontologyName')],
+                  setBasemodel@gmt[c('ontology_id', 'ontology_name')],
                   setBasedTestRes,
-                  by.x = "ontologyId",
-                  by.y = "ontologyName",
+                  by.x = "ontology_id",
+                  by.y = "ontology_name",
                   all = TRUE
                 )
                 
@@ -151,7 +151,7 @@ setMethod("initialize", "ora",
                   c(
                     'ontology_id',
                     'ontology_name',
-                    'listOfValues',
+                    'list_of_values',
                     'p_value'
                   )
                 if (!identical(setBasemodel@p_value_adjustment_method, character(0)) &&
@@ -163,7 +163,7 @@ setMethod("initialize", "ora",
                     )
                   setBasedTestRes <-
                     muleaSetBaseEnrichmentTest[, !names(muleaSetBaseEnrichmentTest) %in%
-                                                 c('listOfValues')]
+                                                 c('list_of_values')]
                 }
               }
               

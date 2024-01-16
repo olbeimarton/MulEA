@@ -83,7 +83,6 @@ write_gmt <- function(gmt, file) {
   close(fileConnection)
 }
 
-#' @description
 #' Filter Ontology
 #' 
 #' Filter ontology to only contain terms between given min. and max. sizes.
@@ -98,7 +97,6 @@ write_gmt <- function(gmt, file) {
 filter_ontology <- function(gmt,
                            min_nr_of_elements = NULL,
                            max_nr_of_elements = NULL) {
-  # TODO : Add quantile parameters as separate! Nothing do is default.
   if (is.null(min_nr_of_elements)) {
     terms_sizes <-
       plyr::laply(

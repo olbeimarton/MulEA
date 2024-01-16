@@ -51,8 +51,8 @@ setMethod("initialize", "MuleaHypergeometricTest",
               #modelGlobal <<- model
               
               testResults <- data.frame(
-                'ontologyName' = muleaSetBaseEnrichmentTestResult$DB_names,
-                'listOfValues' = model@gmt$listOfValues,
+                'ontology_name' = muleaSetBaseEnrichmentTestResult$DB_names,
+                'list_of_values' = model@gmt$list_of_values,
                 'p.value' = muleaSetBaseEnrichmentTestResult$P_val,
                 row.names = NULL
               )

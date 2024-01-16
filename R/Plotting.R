@@ -62,7 +62,7 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 reshape_results <-
   function(model = NULL,
            model_results = NULL,
-           model_ontology_col_name = 'ontologyId',
+           model_ontology_col_name = 'ontology_id',
            ontology_id_colname = 'ontology_id',
            p_value_type_colname = 'eFDR',
            p_value_max_threshold = TRUE) {
@@ -79,23 +79,23 @@ reshape_results <-
     model_with_res_dt_size = 0
     for (i in 1:nrow(model_with_res_dt)) {
       model_with_res_dt_size <-
-        model_with_res_dt_size + length(model_with_res_dt[[i, 'listOfValues']])
+        model_with_res_dt_size + length(model_with_res_dt[[i, 'list_of_values']])
     }
     model_with_res_dt_relaxed <- data.table::data.table(
-      ontologyId = rep('a', length.out = model_with_res_dt_size),
+      ontology_id = rep('a', length.out = model_with_res_dt_size),
       genIdInOntology = rep('a', length.out = model_with_res_dt_size),
       ontologyStatValue = rep(1.0, length.out = model_with_res_dt_size)
     )
     
     model_with_res_dt_relaxed_counter = 1
     for (i in 1:nrow(model_with_res_dt)) {
-      category_name <- model_with_res_dt[[i, 'ontologyId']]
+      category_name <- model_with_res_dt[[i, 'ontology_id']]
       category_p_stat <-
         model_with_res_dt[[i, p_value_type_colname]]
-      for (item_name in model_with_res_dt[[i, 'listOfValues']]) {
+      for (item_name in model_with_res_dt[[i, 'list_of_values']]) {
         # TODO: THE LINE BELOW DOES NOT UPDATE THE OBJECT IS THIS INTENTIONAL?
         model_with_res_dt_relaxed[model_with_res_dt_relaxed_counter,
-                                  c("ontologyId", "genIdInOntology", "ontologyStatValue") :=
+                                  c("ontology_id", "genIdInOntology", "ontologyStatValue") :=
                                     list(category_name, item_name, category_p_stat)]
         model_with_res_dt_relaxed_counter = model_with_res_dt_relaxed_counter + 1
       }
@@ -165,7 +165,7 @@ plot_graph <- function(reshaped_results,
                        shared_elements_min_threshold = 0,
                        p_value_type_colname = 'eFDR',
                        p_value_max_threshold = 0.05) {
-  ontologyId <- ontology_id_colname
+  ontology_id <- ontology_id_colname
   edges <- NULL
   validate_column_names_and_function_args(
     data = reshaped_results,
@@ -197,14 +197,14 @@ plot_graph <- function(reshaped_results,
   ontologies_graph_edges_counter <- 1
   
   for (i in 1:(nrow(ontologies) - 1)) {
-    ontology_name_i <- ontologies[[i, ontologyId]]
-    filter_model_row_select <- model_with_res_dt_relaxed[[ontologyId]] == ontology_name_i
+    ontology_name_i <- ontologies[[i, ontology_id]]
+    filter_model_row_select <- model_with_res_dt_relaxed[[ontology_id]] == ontology_name_i
     genes_in_ontology_i <- model_with_res_dt_relaxed[filter_model_row_select][[ontology_element_colname]]
     
     for (j in (i + 1):nrow(ontologies)) {
-      ontology_name_j <- ontologies[[j, ontologyId]]
+      ontology_name_j <- ontologies[[j, ontology_id]]
       
-      filter_model_row_select_j <- model_with_res_dt_relaxed[[ontologyId]] == ontology_name_j
+      filter_model_row_select_j <- model_with_res_dt_relaxed[[ontology_id]] == ontology_name_j
       genes_in_ontology_j <- model_with_res_dt_relaxed[filter_model_row_select_j][[ontology_element_colname]]
       genes_in_ontology_i_j_intersection_num <-
         length(intersect(genes_in_ontology_i, genes_in_ontology_j))
@@ -220,7 +220,7 @@ plot_graph <- function(reshaped_results,
   ontologies_graph_edges <-
     ontologies_graph_edges[0:(ontologies_graph_edges_counter - 1), ]
   
-  nodes_ids <- model_with_res_dt_relaxed[[ontologyId]]
+  nodes_ids <- model_with_res_dt_relaxed[[ontology_id]]
   nodes_p_stat <-
     model_with_res_dt_relaxed[[p_value_type_colname]]
   ontologies_graph_nodes <- data.table::data.table(id = nodes_ids,

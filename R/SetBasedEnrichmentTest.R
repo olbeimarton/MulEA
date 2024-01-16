@@ -90,7 +90,7 @@ setMethod("initialize", "SetBasedEnrichmentTest",
             .Object@test <- function(model) {
               pool <- NULL
               if (0 == length(model@pool)) {
-                pool <- unique(unlist(.Object@gmt[, 'listOfValues']))
+                pool <- unique(unlist(.Object@gmt[, 'list_of_values']))
               } else {
                 pool <- unique(model@pool)
               }
@@ -104,8 +104,8 @@ setMethod("initialize", "SetBasedEnrichmentTest",
                 )
               }
               
-              DB <- .Object@gmt[, 'listOfValues']
-              names(DB) <- .Object@gmt$ontologyId
+              DB <- .Object@gmt[, 'list_of_values']
+              names(DB) <- .Object@gmt$ontology_id
               
               testResults <-
                 set.based.enrichment.test.wrapper(
