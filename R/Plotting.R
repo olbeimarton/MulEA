@@ -257,7 +257,8 @@ plot_graph <- function(reshaped_results,
       name = p_value_type_colname
     ) + 
     ggraph::geom_node_text(aes(label = .data$label), repel = TRUE) +
-    ggraph::theme_graph()
+    ggraph::theme_graph()+ 
+    theme(text=element_text(family="Helvetica"))
   graph_plot
 }
 
@@ -347,7 +348,8 @@ plot_barplot <-
                           high = '#ffa600',
                          limits = c(0.0, p_value_max_threshold)) +
       coord_flip() +
-      theme_light()
+      theme_light()+ 
+      theme(text=element_text(family="Helvetica"))
     mulea_gg_plot
   }
 
@@ -441,7 +443,8 @@ plot_lollipop <-
                            high = 'grey90',
                            limits = c(0.0, p_value_max_threshold)) +
       coord_flip() +
-      theme_light()
+      theme_light()+ 
+      theme(text=element_text(family="Helvetica"))
     mulea_gg_plot
   }
 
@@ -531,5 +534,5 @@ plot_heatmap <- function(reshaped_results,
     geom_tile() +
     coord_fixed()+
     theme_light() +
-    theme(axis.text.x = element_text(angle = 90))
+    theme(axis.text.x = element_text(angle = 90), text = element_text(family = "Helvetica"))
 }
