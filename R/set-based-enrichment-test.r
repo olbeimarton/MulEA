@@ -167,7 +167,7 @@ set.based.enrichment.test <- function(steps, pool, select, DB, nthread=1, debug=
   
   
   names(simulation_result_tbl)<-c("DB_in_pool","intersect.size","multiplicity") # set the column names
-  simulation_result_tbl$p <- 1-stats::phyper(as.numeric(simulation_result_tbl$intersect.size)-1, simulation_result_tbl$DB_in_pool, length(pool)-simulation_result_tbl$DB_in_pool,  length(select))
+  simulation_result_tbl$p <- 1-stats::phyper(simulation_result_tbl$intersect.size-1, simulation_result_tbl$DB_in_pool, length(pool)-simulation_result_tbl$DB_in_pool,  length(select))
   
   # test consitency
   stopifnot(steps*length(DB)==sum(simulation_result_tbl$multiplicity))  # ez nem fontos, de igy kell legyen
