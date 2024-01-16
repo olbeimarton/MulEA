@@ -1,4 +1,4 @@
-#' An S4 class to represent a set based tests in Mulea.
+#' An S4 class to represent a set based tests in mulea.
 #'
 #' @slot method A method from set based methods to count results. Possible
 #' values: "Hypergeometric", "SetBasedEnrichment".
@@ -10,11 +10,11 @@
 #' @slot number_of_permutations A number of permutations used in set based
 #' enrichment test. Default value is 10000.
 #' @slot number_of_cpu_threads Number of processor's threads used in calculations.
-#' @return ora object. This object represents set based tests in Mulea.
+#' @return ora object. This object represents set based tests in mulea.
 #' @export ora
 #' @examples
 #' modelDfFromFile <- read_gmt(
-#'   file = system.file(package="MulEA", "extdata", "model.gmt"))
+#'   file = system.file(package="mulea", "extdata", "model.gmt"))
 #' dataFromExperiment <- c(
 #'   "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
 #'   "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")
@@ -131,7 +131,7 @@ setMethod("initialize", "ora",
                                                  'R_obs', 'R_exp', 'adjustedPValue')]
               } else {
                 muleaHypergeometricTest <-
-                  MuleaHypergeometricTest(
+                  muleaHypergeometricTest(
                     gmt = setBasemodel@gmt,
                     element_names = setBasemodel@element_names,
                     pool = setBasemodel@background_element_names,
@@ -175,12 +175,12 @@ setMethod("initialize", "ora",
           })
 
 #' @describeIn ora runs test calculations.
-#' @param model Object of s4 class represents Mulea Test.
+#' @param model Object of s4 class represents mulea Test.
 #' @return run_test method for ora object. Returns results of counting using
 #' methods from set based area.
 #' @examples
 #' modelDfFromFile <- read_gmt(
-#'   file = system.file(package="MulEA", "extdata", "model.gmt"))
+#'   file = system.file(package="mulea", "extdata", "model.gmt"))
 #' dataFromExperiment <- c(
 #'   "FBgn0004407", "FBgn0010438", "FBgn0003742", "FBgn0029709", "FBgn0030341",
 #'   "FBgn0037044", "FBgn0002887", "FBgn0028434", "FBgn0030170", "FBgn0263831")

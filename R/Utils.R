@@ -60,9 +60,9 @@ read_gmt <- function(file) {
 #' @export
 #' @examples
 #' modelDfFromFile <- read_gmt(
-#'   file = system.file(package="MulEA", "extdata", "model.gmt"))
+#'   file = system.file(package="mulea", "extdata", "model.gmt"))
 #' write_gmt(gmt = modelDfFromFile,
-#'           file = paste(system.file(package="MulEA", "extdata"),
+#'           file = paste(system.file(package="mulea", "extdata"),
 #'           "fromDb.gmt", sep = "/"))
 write_gmt <- function(gmt, file) {
   vectorOfModel <-
@@ -303,7 +303,7 @@ getMultipleTestsSummary <- function(tests_res,
                                     labels = list(),
                                     cut_off = 0.05) {
   # Summarize results.
-  print("Mulea sumary time:")
+  print("mulea sumary time:")
   tictoc::tic()
   
   metadata_len <- length(tests_res[[1]]$metadata)
@@ -430,7 +430,7 @@ getMultipleTestsSummary <- function(tests_res,
 getSummaryToRoc <- function(tests_res,
                             cut_off_resolution = 0.01,
                             methods_names = c('pValue', 'adjustedPValue', 'adjustedPValueEmpirical')) {
-  print("Mulea ROC data calculation time:")
+  print("mulea ROC data calculation time:")
   tictoc::tic()
   
   number_of_tests <- length(tests_res)
@@ -567,7 +567,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
                                   number_of_under_representation_groups = 0,
                                   number_of_steps = 5000,
                                   nthreads = 16) {
-  print("Mulea calculation time:")
+  print("mulea calculation time:")
   tictoc::tic()
   number_of_samples <- 1
   tests_res <- vector("list", number_of_tests)
@@ -594,7 +594,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
     
     input_select <- unlist(samples)
     
-    mulea_ora_model <- MulEA::ora(
+    mulea_ora_model <- mulea::ora(
       gmt = input_gmt_filtered,
       element_names = input_select,
       p_value_adjustment_method = "eFDR",
@@ -602,7 +602,7 @@ simulateMultipleTests <- function(input_gmt_filtered,
       number_of_cpu_threads = nthreads
     )
     
-    mulea_ora_results <- MulEA::run_test(mulea_ora_model)
+    mulea_ora_results <- mulea::run_test(mulea_ora_model)
     tests_res[[i]]$mulea_res <- mulea_ora_results
     tests_res[[i]]$test_data <- input_gmt_decorated
     tests_res[[i]]$metadata <- list(
@@ -658,7 +658,7 @@ simulateMultipleTestsWithRatioParam <- function(input_gmt_filtered,
       )
     )
   }
-  print('MulEA : ratio search calculation time:')
+  print('mulea : ratio search calculation time:')
   tictoc::toc()
   return(sim_mult_tests)
 }

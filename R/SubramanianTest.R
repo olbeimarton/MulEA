@@ -1,4 +1,4 @@
-#' PRIVATE class : An S4 class to represent a ranked based tests in Mulea.
+#' PRIVATE class : An S4 class to represent a ranked based tests in mulea.
 #'
 #' @slot gmt A data.frame representing GMT's reprezentation of model.
 #' @slot element_names A data from expeciment to analize accross model.
@@ -97,7 +97,7 @@ setMethod("initialize", "SubramanianTest",
           })
 
 #' @describeIn SubramanianTest runs test calculations.
-#' @param model Object of s4 class represents Mulea Test.
+#' @param model Object of s4 class represents mulea Test.
 #' @return run_test method for SubramanianTest object. Used as private function.
 #' @examples
 #' \dontrun{

@@ -25,7 +25,7 @@ filterRelaxedResultsForPlotting <- function(reshaped_results,
 #' and returns the resulting data frame, which can be used 
 #' for further analysis or visualization.
 #'
-#' @param model a MulEA model, created e.g. by ora().
+#' @param model a mulea model, created e.g. by ora().
 #' @param model_results Results from model, returned by run_test().
 #' @param model_ontology_col_name Character, specifies the column name in the model that contains ontology IDs. It defines which column in the model should be used for matching ontology IDs.
 #' @param ontology_id_colname Character, specifies the column name for ontology IDs in the model results. It indicates which column in the model results contains ontology IDs for merging.
